@@ -1,0 +1,218 @@
+﻿@model Appointment_Booking.Data.Dto.CampanyDto
+
+@{
+    ViewData["Title"] = "EditCampany";
+
+    int userId = ViewBag.id;
+    CampanyViewModel campany = ViewBag.campany;
+
+}
+
+<br />
+
+<div class="row" style="margin-left:2%;margin-right:2%;">
+    <div class="col-md-12 col-md-offset-12">
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Edit Campany</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form asp-action="EditCampany" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+
+                        <input value="@userId" asp-for="Id" class="form-control" hidden />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" value="@campany.Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" value="@campany.Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" value="@campany.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" value="@campany.Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                        <div class="form-group">
+                            <label asp-for="Address.CountryName" class="control-label"></label>
+                            @if (campany.Address == null)
+                            {
+                                <input asp-for="Address.CountryName" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="Address.CountryName" value="@campany.Address.CountryName" class="form-control" />
+                            }
+
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address.CityName" class="control-label"></label>
+                            @if (campany.Address == null)
+                            {
+                                <input asp-for="Address.CityName" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="Address.CityName" value="@campany.Address.CityName" class="form-control" />
+                            }
+
+                          
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address.StreetName" class="control-label"></label>
+                            @if (campany.Address == null)
+                            {
+                                <input asp-for="Address.StreetName" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="Address.StreetName" value="@campany.Address.StreetName" class="form-control" />
+                            }
+
+                         
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address.Latitude" class="control-label"></label>
+                            @if (campany.Address == null)
+                            {
+                                <input asp-for="Address.Latitude" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="Address.Latitude" value="@campany.Address.Latitude" class="form-control" />
+                            }
+
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address.Longtitude" class="control-label"></label>
+                            @if (campany.Address == null)
+                            {
+                                <input asp-for="Address.Longtitude" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="Address.Longtitude" value="@campany.Address.Longtitude" class="form-control" />
+                            }
+
+                            
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Website" class="control-label"></label>
+                        <input asp-for="Website" value="@campany.Website" class="form-control" />
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WorkStart" class="control-label"></label>
+                        <input asp-for="WorkStart" value="@campany.WorkStart" class="form-control" />
+                        <span asp-validation-for="WorkStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WorkEnd" class="control-label"></label>
+                        <input asp-for="WorkEnd" value="@campany.WorkEnd" class="form-control" />
+                        <span asp-validation-for="WorkEnd" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="~/Campany/Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!--
+
+
+<h1>EditCampany</h1>
+
+<h4>CampanyDto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCampany">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input value="@userId" asp-for="Id" class="form-control" hidden/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkStart" class="control-label"></label>
+                <input asp-for="WorkStart" class="form-control" />
+                <span asp-validation-for="WorkStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkEnd" class="control-label"></label>
+                <input asp-for="WorkEnd" class="form-control" />
+                <span asp-validation-for="WorkEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

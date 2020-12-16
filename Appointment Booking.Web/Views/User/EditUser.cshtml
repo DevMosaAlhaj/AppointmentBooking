@@ -1,0 +1,176 @@
+﻿@model Appointment_Booking.Data.Dto.UserDto
+
+@{
+    ViewData["Title"] = "Edit User";
+    UserViewModel user = ViewBag.user;
+}
+
+<br />
+
+<div class="row" style="margin-left:2%;margin-right:2%;">
+    <div class="col-md-12 col-md-offset-12">
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Edit User</h3>
+            </div>
+
+            <form asp-action="EditUser" method="post">
+                <div class="card-body">
+
+                    <div class="row">
+
+
+                        <input asp-for="Id" value="@user.Id" class="form-control" type="hidden"/>
+
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="control-label"></label>
+                                <input asp-for="FirstName" value="@user.FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="LastName" style="margin-left:10px" class="control-label"></label>
+                                <input asp-for="LastName" value="@user.LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" value="@user.Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" value="@user.Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label asp-for="Address.CountryName" class="control-label"></label>
+                                <input asp-for="Address.CountryName" value="@user.Address.CountryName" class="form-control" />
+                                <span asp-validation-for="Address.CountryName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label asp-for="Address.CityName" class="control-label"></label>
+                                <input asp-for="Address.CityName" value="@user.Address.CityName" class="form-control" />
+                                <span asp-validation-for="Address.CityName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label asp-for="Address.StreetName" class="control-label"></label>
+                                <input asp-for="Address.StreetName" value="@user.Address.StreetName" class="form-control" />
+                                <span asp-validation-for="Address.StreetName" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Gender" class="control-label"></label>
+
+                                <select asp-for="Gender" class="form-control">
+
+                                    @if (user.Gender == 0)
+                                    {
+                                        <option selected="selected" value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="0">Male</option>
+                                        <option  selected="selected" value="1">Female</option>
+                                    }
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                     
+
+
+                        <div class="col-md-2" style="padding-top:25px;margin-left:10px;">
+
+                            <button type="submit" class="btn btn-success btn-block btn-lg" style="padding-right:15px;">Save</button>
+
+
+                        </div>
+
+
+
+
+                        <div class="col-md-1" style="padding-top:25px">
+
+
+
+                            <a asp-action="Index" class="btn btn-primary btn-lg">Cancel</a>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <!-- /.card-body -->
+
+
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

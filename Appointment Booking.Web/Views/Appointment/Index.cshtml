@@ -1,0 +1,302 @@
+﻿@model PagingViewModel<AppointmentViewModel>
+
+@{
+    ViewData["Title"] = "Appointments";
+
+    List<UserViewModel> users = ViewBag.users;
+    List<CampanyViewModel> campanies = ViewBag.campanies;
+
+    var campanyId = ViewBag.campanyId;
+    var userId = ViewBag.userId;
+    var date = ViewBag.date;
+
+    var nextPage = Model.CurrentPage + 1;
+    var previousPage = Model.CurrentPage - 1;
+
+}
+
+<br />
+<br />
+<br />
+
+<div class="row" style="margin-right:20px; margin-left:20px;">
+    <div class="col-md-auto">
+        <div class="card" style="padding:0px 10px 0px 10px">
+
+            <label style="padding: 10px 0px 0px 15px;">Search Filter</label>
+
+            <div class="row">
+
+                <div class="col-md-10">
+
+                    <form method="get" asp-action="Index">
+
+                        <div class="row" style="padding-left: 10px;">
+
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select name="campanyId" class="form-control">
+
+                                        @if (campanyId != null)
+                                        {
+
+
+                                            @foreach (var campany in campanies)
+                                            {
+                                                @if (campanyId == campany.Id)
+                                                {
+                                                    <option selected="selected" value="@campany.Id">@campany.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@campany.Id">@campany.Name</option>
+                                                }
+
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <option value="" selected="selected" disabled>Select Campany</option>
+
+                                            @foreach (var campany in campanies)
+                                            {
+                                                <option value="@campany.Id">@campany.Name</option>
+                                            }
+
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select name="userId" class="form-control">
+
+                                        @if (userId != null)
+                                        {
+
+
+                                            @foreach (var user in users)
+                                            {
+                                                @if (userId == user.Id)
+                                                {
+                                                    <option selected="selected" value="@user.Id">
+                                                        @{ var fullName = $"{user.FirstName} {user.LastName}";
+                                                        } @fullName
+                                                    </option>
+                                                }
+
+                                                else
+                                                {
+                                                    <option value="@user.Id">
+                                                        @{ var fullName = $"{user.FirstName} {user.LastName}";
+                                                        } @fullName
+                                                    </option>
+                                                }
+                                            }
+                                        }
+
+                                        else
+                                        {
+                                            <option value="" selected="selected" disabled>Select User</option>
+
+                                            @foreach (var user in users)
+                                            {
+                                                <option value="@user.Id">
+                                                    @{ var fullName = $"{user.FirstName} {user.LastName}";
+                                                    } @fullName
+                                                </option>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    @if (date != null)
+                                    {
+                                        <input class="form-control" placeholder="Appointment Date" value="@date" name="date" type="datetime" />
+
+                                    }
+                                    else
+                                    {
+
+                                        <input class="form-control" placeholder="Appointment Date" value="@DateTime.Today.ToString("yyyy/MM/dd")" name="date" type="datetime" />
+
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-1">
+                                <input type="submit" value="Apply Filter" class="btn btn-primary" />
+                            </div>
+
+                            @if (userId != null || campanyId != null || date != null)
+                            {
+                                <div class="col-md-1">
+                                    <div class="row" style="padding-left:60px;">
+                                        <a href="~/Appointment/Index/" class="btn btn-secondary">Clear</a>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Campany Name
+                        </th>
+
+                        <th>
+                            User Name
+                        </th>
+                        <th>
+                            BookingDateTime
+                        </th>
+                        <th>
+                            Description
+                        </th>
+
+                        <th></th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CampanyName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BookingDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+
+                                <div class="row" style="padding-right:27px">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-warning" href="~/Appointment/EditAppointment/@item.Id">Edit</a>
+
+                                    </div>
+
+                                    <div class="col-md-1">
+
+                                        <a class="btn btn-danger" href="~/Appointment/DeleteAppointment/@item.Id">Delete</a>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+            <div class="col-md-12" style="margin-top:20px;padding:0px 30px 0px 30px;">
+
+
+                <a href="~/Appointment/AddAppointment/" class="btn btn-success" style="float:left">Add Appointment</a>
+
+                <!-- Pagination Nav -->
+
+                <nav style="margin:0px 0px 0px 0px;display: flex; justify-content: flex-end;">
+                    <ul class="pagination">
+
+                        @if (Model.CurrentPage > 1)
+                        {
+
+                            <li class="page-item ">
+                                <span class="page-link"><a href="~/Appointment/index/@previousPage">Previous</a></span>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        }
+
+
+                        @for (int i = 1; i <= Model.PagesCount; i++)
+                        {
+                            if (i == Model.CurrentPage)
+                            {
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        <a style="color:white;" href="~/Appointment/index/@i">@i</a>
+
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="~/Appointment/index/@i">@i</a></li>
+                            }
+                        }
+
+                        @if (Model.CurrentPage < Model.PagesCount)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="~/Appointment/index/@nextPage">Next</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link">Next</a>
+                            </li>
+                        }
+
+
+                    </ul>
+                </nav>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
