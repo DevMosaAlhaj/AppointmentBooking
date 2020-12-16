@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Appointment_Booking.Data</RootNamespace>
+    <RootNamespace>AppointmentBooking.Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

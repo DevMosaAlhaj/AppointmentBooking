@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-Appointment_Booking.Web-F1402799-C6DF-483F-9737-567F2EAB44B7</UserSecretsId>
-    <RootNamespace>Appointment_Booking.Web</RootNamespace>
+    <RootNamespace>AppointmentBooking.Web</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Appointment Booking.Service\AppointmentBooking.Service.csproj" />
+    <ProjectReference Include="..\AppointmentBooking.Service\AppointmentBooking.Service.csproj" />
   </ItemGroup>
 
 </Project>

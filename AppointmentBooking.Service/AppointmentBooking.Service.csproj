@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Appointment_Booking.Service</RootNamespace>
+    <RootNamespace>AppointmentBooking.Service</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Appointment Booking.Data\AppointmentBooking.Data.csproj" />
+    <ProjectReference Include="..\AppointmentBooking.Data\AppointmentBooking.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
